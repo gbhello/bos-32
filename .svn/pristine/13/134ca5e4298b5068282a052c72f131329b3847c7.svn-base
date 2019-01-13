@@ -1,0 +1,40 @@
+package com.itheima.bos.web.action;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
+
+import com.itheima.bos.domain.Decidedzone;
+import com.itheima.bos.service.IDecidedzoneService;
+import com.itheima.bos.web.action.base.BaseAction;
+@Controller
+@Scope("prototype")
+public class DecidedzoneAction extends BaseAction<Decidedzone> {
+	
+	@Autowired
+	private IDecidedzoneService decidedzoneService;
+	
+	//属性驱动，接收页面传递过来的subareaid属性
+	private String[] subareaid;
+	public void setSubareaid(String[] subareaid) {
+		this.subareaid = subareaid;
+	}
+	
+	/**
+	 * 添加定区
+	 */
+	public String add(){
+		decidedzoneService.save(model,subareaid);
+		return LIST;
+	}
+	
+	/**
+	 * 分页查询方法
+	 */
+	public String pageQuery(){
+		decidedzoneService.pageQuery(pageBean);
+		this.java2Json(pageBean, new String[]{"currentPage","pageSize","detachedCriteria","subareas","decidedzones"});
+		return NONE;
+	}
+
+}
