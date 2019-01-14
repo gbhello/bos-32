@@ -12,28 +12,27 @@ public class Noticebill implements java.io.Serializable {
 
 	// Fields
 
-	private String id; // 业务单主键
-	private User user;//发起业务通知单的客户
-	
-	private Staff staff; // 客户编号
-	private String customerId;//
-	private String customerName;// 客户姓名
-	private String delegater;// 联系人
-	private String telephone;// 电话
-	private String pickaddress;// 取件地址
-	private String arrivecity;// 到达城市
-	private String product;// 产品
-	private Date pickdate;// 预约取件时间
-	private Integer num;// 件数
-	private Double weight; // 重量
-	private String volume;// 体积
-	private String remark;// 备注
-	private String ordertype;// 分单类型：自动分单、人工分单
+	private String id;
+	private User user;
+	private Staff staff;
+	private String customerId;
+	private String customerName;
+	private String delegater;
+	private String telephone;
+	private String pickaddress;
+	private String arrivecity;
+	private String product;
+	private Date pickdate;
+	private Integer num;
+	private Double weight;
+	private String volume;
+	private String remark;
+	private String ordertype;//分单类型：自动分单、人工分单
 	private Set workbills = new HashSet(0);
 
-	public static final String ORDERTYPE_AUTO = "自动分单";
-	public static final String ORDERTYPE_MAN = "人工分单";
-
+	public static final String  ORDERTYPE_AUTO = "自动分单";
+	public static final String  ORDERTYPE_MAN = "人工分单";
+	
 	// Constructors
 
 	/** default constructor */

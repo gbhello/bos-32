@@ -10,17 +10,17 @@ public class Subarea implements java.io.Serializable {
 
 	private String id;
 	private Decidedzone decidedzone;
-	private Region region;
+	private Region region;//分区对应的区域
 	private String addresskey;
 	private String startnum;
 	private String endnum;
 	private String single;
 	private String position;
-	
+
 	public String getSubareaid(){
 		return id;
 	}
-
+	
 	// Constructors
 
 	/** default constructor */

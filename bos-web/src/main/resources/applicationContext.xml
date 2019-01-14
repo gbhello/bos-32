@@ -65,4 +65,37 @@
 	<!-- 注册crm客户端代理对象 -->
 	<jaxws:client id="crmClient" serviceClass="com.itheima.crm.ICustomerService" address="http://localhost:8080/crm_heima32/service/customer">
 	</jaxws:client>
+	
+	<!-- 注册自定义relam -->
+	<bean id="bosRealm" class="com.itheima.bos.realm.BOSRealm"></bean>
+	
+	<!-- 注册安全管理器 -->
+	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+		<property name="realm" ref="bosRealm"></property>
+	</bean>
+	
+	<!-- 配置一个shiro框架的过滤器工厂bean，用于创建shiro框架的过滤器 -->
+	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+		<!-- 注入安全管理器对象 -->
+		<property name="securityManager" ref="securityManager"/>
+		<!-- 注入登陆页面访问URL -->
+		<property name="loginUrl" value="/login.jsp"></property>
+		<!-- 注入权限不足提供页面访问URL -->
+		<property name="unauthorizedUrl" value="/unauthorized.jsp"></property>
+		<!-- 配置URL拦截规则 -->
+		<property name="filterChainDefinitions">
+			<value>
+				/css/**=anon
+				/js/**=anon
+				/images/**=anon
+				/validatecode.jsp*=anon
+				/login.jsp*=anon
+				/userAction_login.action=anon
+				/page_base_staff.action=perms["staff"]
+				/**=authc
+			</value>
+		</property>
+	</bean>
+	<!-- 注入安全管理器对象 -->
+	
 </beans>
