@@ -27,7 +27,12 @@
 		<!-- 配置全局页面 -->
 		<global-results>
 			<result name="login">/login.jsp</result>
+			<result name="unauthorized">/unauthorized.jsp</result>
 		</global-results>
+		
+		<global-exception-mappings>
+			<exception-mapping result="unauthorized" exception="org.apache.shiro.authz.UnauthorizedException"></exception-mapping>
+		</global-exception-mappings>
 		
 		<!-- 需要进行权限控制的页面访问 -->
 		<action name="page_*_*">
@@ -58,6 +63,10 @@
 		</action>
 		<!-- 工作单管理 -->
 		<action name="workordermanageAction_*" class="workordermanageAction" method="{1}">
+		</action>
+		<!-- 权限管理 -->
+		<action name="functionAction_*" class="functionAction" method="{1}">
+			<result name="list">/WEB-INF/pages/admin/function.jsp</result>
 		</action>
 	</package>
 </struts>

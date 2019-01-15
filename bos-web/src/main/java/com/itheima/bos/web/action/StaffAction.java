@@ -6,6 +6,7 @@ import java.util.List;
 import net.sf.json.JSONObject;
 import net.sf.json.JsonConfig;
 
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.struts2.ServletActionContext;
 import org.hibernate.criterion.DetachedCriteria;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -89,6 +90,7 @@ public class StaffAction extends BaseAction<Staff> {
 	// 属性驱动，接收页面提交的ids参数
 	private String ids;
 
+	@RequiresPermissions("staff-delete")//执行这个方法，需要当前用户具有staff-delete这个权限
 	public String deleteBatch() {
 		staffService.deleteBatch(ids);
 		return LIST;

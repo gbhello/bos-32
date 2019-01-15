@@ -6,9 +6,11 @@ import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.SimpleAuthenticationInfo;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.authz.AuthorizationInfo;
+import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.support.SimpleAutowireCandidateResolver;
 
 import com.itheima.bos.dao.IUserDao;
 import com.itheima.bos.domain.User;
@@ -36,8 +38,13 @@ public class BOSRealm extends AuthorizingRealm {
 	}
 	//授权方法
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection arg0) {
+		SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
+		//为用户授权
+		info.addStringPermission("staff-list");
 		
-		return null;
+		//TODO 后期需要修改为根据当前用户查询数据库，获取实际对应的权限
+		
+		return info;
 	}
 
 	
