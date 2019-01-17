@@ -20,7 +20,7 @@ public class FunctionAction extends BaseAction<Function> {
 	 */
 	public String listajax(){
 		List<Function> list = functionService.findAll();
-		this.java2Json(list, new String[]{"parentFunction","roles","children"});
+		this.java2Json(list, new String[]{"parentFunction","roles"});
 		return NONE;
 	}
 	
@@ -40,6 +40,15 @@ public class FunctionAction extends BaseAction<Function> {
 		pageBean.setCurrentPage(Integer.parseInt(page));
 		functionService.pageQuery(pageBean);
 		this.java2Json(pageBean, new String[]{"parentFunction","roles","children"});
+		return NONE;
+	}
+	
+	/**
+	 * 根据当前登陆人查询对应的菜单数据，返回json
+	 */
+	public String findMenu(){
+		List<Function> list = functionService.findMenu();
+		this.java2Json(list, new String[]{"parentFunction","roles","children"});
 		return NONE;
 	}
 }
