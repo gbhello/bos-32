@@ -66,6 +66,17 @@ public class SubareaServiceImpl implements ISubareaService {
 		return subareaDao.findByCriteria(detachedCriteria);
 	}
 
+	@Override
+	public List<Object> findSubareasGroupByProvince() {
+		List<Object> list = subareaDao.findSubareasGroupByProvince();
+		return list;
+	}
+
+	/**
+	 * 查询区域分区分布图数据
+	 */
+	
+
 	
 
 }
